@@ -1,4 +1,7 @@
 <!doctype html>
+<%@page import="genobot.qnaVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="genobot.qnaDAO"%>
 <html lang="ko">
 
 <head>
@@ -59,13 +62,24 @@
       <main role="main" class="main px-4">
         <div class="container">
           <h1 class="h2 pt-4 pb-3">수정 화면 타이틀</h1>
-
+		<%		
+		qnaDAO dao = new qnaDAO();
+		qnaVO result = (qnaVO)session.getAttribute("QnaOne");	
+		%>
           <!-- bodyContent -->
           <form class="needs-validation" novalidate>
             <div class="row">
-              <div class="form-group col-12">
-                <label for="field-id">상담 아이디</label>
-                <input type="text" class="form-control" id="field-id" placeholder="" value="" required>
+              <div class="form-group col-6">
+                <label for="field-id">번호</label>
+                <input type="text" class="form-control" id="field-id" placeholder="" value="<%=result.getBoardnum() %>" required>
+                <!-- alert feedback -->
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="form-group col-6">
+                <label for="field-id">처리상태</label>
+                <input type="text" class="form-control" id="field-id" placeholder="" value="<%=result.getCall_state() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid first name is required.
@@ -75,7 +89,7 @@
             <div class="row">
               <div class="form-group col-6">
                 <label for="field-applicant">신청인</label>
-                <input type="text" class="form-control" id="field-applicant" placeholder="" value="" required>
+                <input type="text" class="form-control" id="field-applicant" placeholder="" value="<%=result.getUser_name() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid first name is required.
@@ -83,7 +97,25 @@
               </div>
               <div class="form-group col-6">
                 <label for="field-phone">연락처</label>
-                <input type="text" class="form-control" id="field-phone" placeholder="" value="" required>
+                <input type="text" class="form-control" id="field-phone" placeholder="" value="<%=result.getPhone_num() %>" required>
+                <!-- alert feedback -->
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-6">
+                <label for="field-applicant">문의시간</label>
+                <input type="text" class="form-control" id="field-applicant" placeholder="" value="<%=result.getReg_date() %>" required>
+                <!-- alert feedback -->
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="form-group col-6">
+                <label for="field-phone">완료시간</label>
+                <input type="text" class="form-control" id="field-phone" placeholder="" value="<%=result.getCk_date() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid last name is required.
@@ -92,7 +124,7 @@
             </div>
             <div class="form-group">
               <label for="field-textarea">상담 요청 내용</label>
-              <textarea class="form-control" id="field-textarea" rows="4" placeholder=""></textarea>
+              <textarea class="form-control" id="field-textarea" rows="4" placeholder=""><%=result.getComment() %></textarea>
               <!-- alert feedback -->
               <div class="invalid-feedback">
                 Valid last name is required.  
@@ -100,7 +132,7 @@
             </div>
             <div class="form-group">
               <label for="field-textarea">상담 처리 결과</label>
-              <textarea class="form-control" id="field-textarea" rows="4" placeholder=""></textarea>
+              <textarea class="form-control" id="field-textarea" rows="4" placeholder=""><%=result.getCall_result() %></textarea>
               <!-- alert feedback -->
               <div class="invalid-feedback">
                 Valid last name is required.  
@@ -123,7 +155,7 @@
             모달 API 
             https://getbootstrap.com/docs/4.6/components/modal/
           -->
-
+		
           <!-- 상담완료 모달 -->
           <div class="modal fade" id="modal-completed" tabindex="-1" aria-labelledby="completed-consult-modal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

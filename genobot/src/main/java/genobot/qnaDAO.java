@@ -123,6 +123,37 @@ public class qnaDAO {
 		return arr;
 	}
 	
+	public qnaVO OneSelect(int boardnum){
+		
+		try {
+			getConn();
+			sql = "select * from call_list where boardnum = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, boardnum);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				
+				String getuser_name = rs.getString(1);
+				String getphone_num = rs.getString(2);
+				String getcomment = rs.getString(3);
+				String getcall_state = rs.getString(4);
+				int getboardnum = rs.getInt(5);
+				String getreg_date = rs.getString(6);
+				String getck_date = rs.getString(7);
+				String getcall_result = rs.getString(8);
+				
+				vo = new qnaVO(getuser_name, getphone_num, getcomment, getcall_state, getboardnum, getreg_date, getck_date, getcall_result);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			close();
+		}
+		return vo;
+		
+		
+	}
 	public int Delete(String boardnum) {
 		
 

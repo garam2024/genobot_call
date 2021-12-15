@@ -85,7 +85,7 @@
 				for(int i=0;i<arr.size();i++){
 				%>
                 <tbody>
-                  <tr>
+                  <tr onclick="location.href='detailCon.do?boardnum=<%=arr.get(i).getBoardnum()%>'">
                   	<td><%=arr.get(i).getBoardnum()%></td>
                   	<td><%=arr.get(i).getUser_name()%></td>
 					<td><%=arr.get(i).getPhone_num() %></td>			

@@ -27,6 +27,8 @@ public class frontController extends HttpServlet {
 			con = new InquireCon();			
 		} else if(result.equals("updateCon.do")) {
 			con = new updateCon();
+		} else if(result.equals("detailCon.do")) {
+			con = new detailCon();
 		}
 		String moveURL = con.execute(request, response);
 		response.sendRedirect(moveURL);
