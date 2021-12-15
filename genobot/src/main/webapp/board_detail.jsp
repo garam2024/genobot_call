@@ -2,6 +2,8 @@
 <%@page import="genobot.qnaVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="genobot.qnaDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html lang="ko">
 
 <head>
@@ -67,11 +69,11 @@
 		qnaVO result = (qnaVO)session.getAttribute("QnaOne");	
 		%>
           <!-- bodyContent -->
-          <form class="needs-validation" novalidate>
+          <form class="needs-validation" action = "updateCon.do" method ="post" novalidate>
             <div class="row">
               <div class="form-group col-6">
                 <label for="field-id">번호</label>
-                <input type="text" class="form-control" id="field-id" placeholder="" value="<%=result.getBoardnum() %>" required>
+                <input type="text" class="form-control" id="field-id" name="boardnum" placeholder="" value="<%=result.getBoardnum() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid first name is required.
@@ -79,7 +81,7 @@
               </div>
               <div class="form-group col-6">
                 <label for="field-id">처리상태</label>
-                <input type="text" class="form-control" id="field-id" placeholder="" value="<%=result.getCall_state() %>" required>
+                <input type="text" class="form-control" id="field-id" name="call_state" placeholder="" value="<%=result.getCall_state() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid first name is required.
@@ -89,7 +91,7 @@
             <div class="row">
               <div class="form-group col-6">
                 <label for="field-applicant">신청인</label>
-                <input type="text" class="form-control" id="field-applicant" placeholder="" value="<%=result.getUser_name() %>" required>
+                <input type="text" class="form-control" id="field-applicant" name="user_name" placeholder="" value="<%=result.getUser_name() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid first name is required.
@@ -97,7 +99,7 @@
               </div>
               <div class="form-group col-6">
                 <label for="field-phone">연락처</label>
-                <input type="text" class="form-control" id="field-phone" placeholder="" value="<%=result.getPhone_num() %>" required>
+                <input type="text" class="form-control" id="field-phone" name="phone_num" placeholder="" value="<%=result.getPhone_num() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid last name is required.
@@ -107,7 +109,7 @@
             <div class="row">
               <div class="form-group col-6">
                 <label for="field-applicant">문의시간</label>
-                <input type="text" class="form-control" id="field-applicant" placeholder="" value="<%=result.getReg_date() %>" required>
+                <input type="text" class="form-control" id="field-applicant" name="req_date" placeholder="" value="<%=result.getReg_date() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid first name is required.
@@ -115,7 +117,7 @@
               </div>
               <div class="form-group col-6">
                 <label for="field-phone">완료시간</label>
-                <input type="text" class="form-control" id="field-phone" placeholder="" value="<%=result.getCk_date() %>" required>
+                <input type="text" class="form-control" id="field-phone" name="ck_date" placeholder="" value="<%=result.getCk_date() %>" required>
                 <!-- alert feedback -->
                 <div class="invalid-feedback">
                   Valid last name is required.
@@ -124,15 +126,16 @@
             </div>
             <div class="form-group">
               <label for="field-textarea">상담 요청 내용</label>
-              <textarea class="form-control" id="field-textarea" rows="4" placeholder=""><%=result.getComment() %></textarea>
+              <textarea class="form-control" id="field-textarea" name="comment" rows="4" placeholder=""><%=result.getComment() %></textarea>
               <!-- alert feedback -->
               <div class="invalid-feedback">
                 Valid last name is required.  
               </div>
             </div>
+            
             <div class="form-group">
               <label for="field-textarea">상담 처리 결과</label>
-              <textarea class="form-control" id="field-textarea" rows="4" placeholder=""><%=result.getCall_result() %></textarea>
+              <textarea class="form-control" id="field-textarea" name="call_result" rows="4" placeholder=""><%=result.getCall_result() %></textarea>
               <!-- alert feedback -->
               <div class="invalid-feedback">
                 Valid last name is required.  
@@ -142,11 +145,11 @@
             <!-- 버튼 영역 -->
             <div class="d-flex justify-content-between">
               <div>
-                <button type="button" class="btn btn-danger" onclick="alert('삭제할까요?')">삭제하기</button>
+                <button type="hidden" class="btn btn-danger" onclick="#">삭제하기</button>
               </div>
               <div>
-                <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#modal-completed">상담완료</button>
-                <button type="button" class="btn btn-secondary ml-2" onclick="location.href='board_list.html' ">목록으로</button>
+                <button type="submit" class="btn btn-primary ml-2">상담완료</button>
+                <button type="button" class="btn btn-secondary ml-2" onclick="location.href='board_list.jsp' ">목록으로</button>
               </div>
             </div>
           </form>

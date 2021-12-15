@@ -69,17 +69,18 @@ public class qnaDAO {
 		return cnt;
 	}
 
-	public int Update(String user_name) {
+	public int Update(String call_result, int boardnum) {
 
 	
 		try {
 			getConn();
 
-			sql = "update call_list set call_state = '상담완료' where boardnum=?";
+			sql = "update call_list set call_state = '상담완료', ck_date=sysdate(), call_result=? where boardnum=?";
 
 			psmt = conn.prepareStatement(sql);
 			
-			psmt.setString(1, user_name);
+			psmt.setString(1, call_result);
+			psmt.setInt(2, boardnum);
 			
 			cnt = psmt.executeUpdate();
 			
@@ -154,7 +155,7 @@ public class qnaDAO {
 		
 		
 	}
-	public int Delete(String boardnum) {
+	public int Delete(int boardnum) {
 		
 
 		try {
@@ -162,7 +163,7 @@ public class qnaDAO {
 
 			sql = "Delete from call_list where boardnum=?";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, boardnum);
+			psmt.setInt(1, boardnum);
 			cnt = psmt.executeUpdate();
 
 		} catch (Exception e) {
