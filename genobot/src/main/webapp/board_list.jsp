@@ -1,3 +1,8 @@
+<%@page import="genobot.qnaVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="genobot.qnaDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="ko">
   <head>
@@ -62,91 +67,39 @@
               <table class="table table-striped tbl-board">
                 <thead>
                   <tr>
-                    <th class="text-center" style="width:80px">번호</th>
-                    <th style="width:15%">상담 아이디</th>
+                    <th class="text-center" style="width:80px">번호</th>                  
                     <th style="width:15%">신청인</th>
                     <th style="width:15%">연락처</th>
                     <th>상담 요청 내용</th>
+                    <th>처리상태</th>
+                    <th>문의시간</th>
+                    <th>완료시간</th>
                   </tr>
                 </thead>
+                <% 
+					try {
+					
+				qnaDAO dao = new qnaDAO();
+				ArrayList<qnaVO> arr = dao.select();
+							
+				for(int i=0;i<arr.size();i++){
+				%>
                 <tbody>
                   <tr>
-                    <td class="text-center">1</td>
-                    <td> 23-01-2021-01</td>
-                    <td>홍길동</td>
-                    <td>010-0000-0000</td>
-                    <td><a href="">링크링크링크링크링크링크 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">2</td>
-                    <td> 23-01-2021-01</td>
-                    <td>visual</td>
-                    <td>layout</td>
-                    <td><a href="">링크 타이틀 링크링크내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">3</td>
-                    <td>rich</td>
-                    <td>dashboard</td>
-                    <td>tabular</td>
-                    <td><a href="">링크 타이틀 내용입니다.링크 타이틀 내용입니다.링크 타이틀 내용입니다.링크 타이틀 내용입니다.링크 타이틀 내용입니다.링크 타이틀 내용입니다.링크 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">1,003</td>
-                    <td>placeholder</td>
-                    <td>illustrative</td>
-                    <td>data</td>
-                    <td><a href="">링크 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">1,004</td>
-                    <td>random</td>
-                    <td>layout</td>
-                    <td>dashboard</td>
-                    <td><a href="">링크 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">1,005</td>
-                    <td>irrelevant</td>
-                    <td>text</td>
-                    <td>placeholder</td>
-                    <td><a href="">링크 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">1,006</td>
-                    <td>illustrative</td>
-                    <td>rich</td>
-                    <td>data</td>
-                    <td><a href="">링크 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">1,007</td>
-                    <td>tabular</td>
-                    <td>information</td>
-                    <td>irrelevant</td>
-                    <td><a href="">링크 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">1,008</td>
-                    <td>data</td>
-                    <td>placeholder</td>
-                    <td>text</td>
-                    <td><a href="">링크 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">1,009</td>
-                    <td>irrelevant</td>
-                    <td>visual</td>
-                    <td>layout</td>
-                    <td><a href="">링크 타이틀 타이틀 내용입니다.</a></td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">1,010</td>
-                    <td>rich</td>
-                    <td>dashboard</td>
-                    <td>tabular</td>
-                    <td><a href="">링크 타이틀 내용입니다.</a></td>
-                  </tr>
+                  	<td><%=arr.get(i).getBoardnum()%></td>
+                  	<td><%=arr.get(i).getUser_name()%></td>
+					<td><%=arr.get(i).getPhone_num() %></td>			
+					<td><%=arr.get(i).getComment()%></td>
+					<td><%=arr.get(i).getCall_state()%></td>
+					<td><%=arr.get(i).getReg_date()%></td>
+					<td><%=arr.get(i).getCk_date()%></td>					
+				</tr>												
+					<%
+						}
+					} catch (Exception e) {
+					e.printStackTrace();
+					}
+					%>               
                 </tbody>
               </table>
             </div>
