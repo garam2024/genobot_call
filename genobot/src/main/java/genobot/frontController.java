@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class frontController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
+//æ»≥Á«œººø‰ dddd
 		request.setCharacterEncoding("utf-8");
 		
 		System.out.println("Frontcontroller");
